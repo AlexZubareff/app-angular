@@ -3,6 +3,7 @@ import { ITour } from 'src/app/models/tours';
 import { TicketsStorageService } from 'src/app/services/ticketsStorage/ticketsStorage.service';
 import { TicketService } from 'src/app/services/tickets/ticket.service';
 
+
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticket-list.component.html',
@@ -11,6 +12,7 @@ import { TicketService } from 'src/app/services/tickets/ticket.service';
 export class TicketListComponent implements OnInit {
   tickets: ITour[];
   filter: string = '';
+  loading: boolean = false;
 
   constructor(
     private ticketService: TicketService,
@@ -18,6 +20,7 @@ export class TicketListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.ticketService.getTickets().subscribe(
       (data: ITour[]) => {
         this.tickets = data;
@@ -25,7 +28,7 @@ export class TicketListComponent implements OnInit {
       }
     )
       
-      
+    this.loading = false;
       
   }
 

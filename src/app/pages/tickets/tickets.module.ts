@@ -5,6 +5,7 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import { TicketsRoutingModule } from './tickets-routing.module';
 import { TicketsComponent } from './tickets.component';
@@ -16,6 +17,7 @@ import { SearchComponent } from 'src/app/components/search/search.component';
 import { SearchTourPipe } from 'src/app/pipes/search-tour/search-tour.pipe';
 
 
+
 @NgModule({
   declarations: [
     TicketsComponent,
@@ -24,7 +26,8 @@ import { SearchTourPipe } from 'src/app/pipes/search-tour/search-tour.pipe';
     TicketListComponent,
     AsideComponent,
     SearchComponent,
-    SearchTourPipe
+    SearchTourPipe,
+    
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { SearchTourPipe } from 'src/app/pipes/search-tour/search-tour.pipe';
     CardModule,
     ButtonModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    ProgressSpinnerModule
   ]
 })
 export class TicketsModule { }
