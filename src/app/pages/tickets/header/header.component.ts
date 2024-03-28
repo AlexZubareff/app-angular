@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { IMenuType } from 'src/app/models/menuType';
 import { IUser } from 'src/app/models/users';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
   @Input() menuType: IMenuType;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'Exit',
+        command: () => this.authService.delUserFromLocalstorage(this.user),
         routerLink: ['/auth']
     },
 
@@ -36,6 +39,7 @@ export class HeaderComponent implements OnInit {
   ];
   
   this.user = this.userService.getUser();
+  
 }
 
 ngOnChanges(ev: SimpleChanges): void {
@@ -61,6 +65,8 @@ initMenuItems(): MenuItem[] {
 
   ];
 }
+
+
 
 
   }

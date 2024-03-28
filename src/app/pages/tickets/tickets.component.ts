@@ -13,6 +13,8 @@ export class TicketsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('update ticets.components');
+    
   }
 
   updateSelectedType(ev: IMenuType): void {

@@ -3,7 +3,7 @@
         <app-header  [menuType] = "selectedType"></app-header>
     </header>
     <div class="main-content">
-        <div class="overflow-auto h-100">
+        <div class="overflow-auto h-100 w-100 flex-grow-1">
            <router-outlet></router-outlet>
         </div>
         <app-aside (updateMenuType)="updateSelectedType($event)"></app-aside>

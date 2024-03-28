@@ -15,6 +15,8 @@ import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { AsideComponent } from './aside/aside.component';
 import { SearchComponent } from 'src/app/components/search/search.component';
 import { SearchTourPipe } from 'src/app/pipes/search-tour/search-tour.pipe';
+import { BlocksStyleDirective } from 'src/app/directive/blocks-style.directive';
+
 
 
 
@@ -27,7 +29,7 @@ import { SearchTourPipe } from 'src/app/pipes/search-tour/search-tour.pipe';
     AsideComponent,
     SearchComponent,
     SearchTourPipe,
-    
+    BlocksStyleDirective
   ],
   imports: [
     CommonModule,

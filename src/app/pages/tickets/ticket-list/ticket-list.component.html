@@ -1,20 +1,28 @@
 <div class="spinner text-center">
     <p-progressSpinner *ngIf="loading" class="text-center"></p-progressSpinner>
 </div>
-<div>
+
+<div *ngIf="tickets" >
     <div class="my-1 mx-3">
-        <!-- <span class="mx-3">Search tour</span> -->
         <input type="text"
         placeholder="Search tour ..." 
         [(ngModel)]="filter"/>
     
-        <!-- <input type="text" pInputText [(ngModel)]="login" [ngClass]="{'input-error': !login}" /> -->
     </div>
-    
-        <!-- <app-search></app-search> -->
-        <div class="d-flex flex-row flex-wrap justify-content-around">
+    <div class="m-5">
+        <p>Tours found: {{ tourWrap.childElementCount }}</p>
+        <p>Current Tour index: {{ blockDirective.activeElementIndex }}</p>
+    </div>
+          <!-- <app-search></app-search> -->
+        <div appBlocksStyle
+            #tourWrap
+             #blockDirective="blockStyle"
+             [selector]="'.ticket-item'" 
+             [initFirst]="true"
+             (renderComplete)="directiveRenderComplete($event)" 
+        class="d-flex flex-row flex-wrap justify-content-around">
         
-            <div *ngFor="let item of tickets | searchTour: filter; let i=index" class="mt-3">
+            <div *ngFor="let item of tickets | searchTour: filter; let i=index" class="ticket-item mt-3">
                 <p-card header={{item.name}} subheader={{item.tourOperator}} [style]="{'width': '360px','height': '100%', 'justify-content': 'space-between'}" styleClass="p-card-shadow">
                     <ng-template pTemplate="header">
                         <img alt="Card" src="assets/img/{{item.img}}"/>
@@ -24,11 +32,15 @@
                     </ng-template>
                     
                     <ng-template pTemplate="footer"> 
-                        <p-button label="more details"></p-button>
+                        <p-button (click)="goToTicketInfoPage(item)" label="more details"></p-button>
                     </ng-template>
                 </p-card>
             </div>
         </div>
+        
+</div>
+<div  *ngIf="(tickets | searchTour: filter).length === 0" class="text-center">
+    <p> No tours found</p>
 </div>
 
 

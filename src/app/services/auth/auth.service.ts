@@ -7,6 +7,7 @@ import {IUser} from '../../models/users';
 export class AuthService {
   private usersStorage: IUser[] = [];
 
+
   constructor() {}
 
   checkUser(user: IUser): boolean {
@@ -50,4 +51,11 @@ export class AuthService {
       console.log('setUser usersStorage: ', this.usersStorage);
     }
   }
+
+  delUserFromLocalstorage(user: IUser){
+    window.localStorage.removeItem(`user-${user.login}`);
+    // console.log('Текущий пользователь: ',isUserInLocalStorage);
+    
+  }
+
 }
