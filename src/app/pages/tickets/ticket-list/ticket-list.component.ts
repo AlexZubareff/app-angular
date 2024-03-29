@@ -28,7 +28,7 @@ export class TicketListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-
+ 
     this.ticketService.getTickets().subscribe(
       (data: ITour[]) => {
         this.tickets = data;

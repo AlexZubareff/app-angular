@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IUser } from 'src/app/models/users';
+import { IUser, USER_LOCALSTORAGE_NAME } from 'src/app/models/users';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,13 @@ export class UserService {
   constructor() { }
 
   getUser():IUser {
-    return this.user;
+    if(this.user) {
+      return this.user;
+    } else {
+      const userFromLocalStorage = JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_NAME) || '')
+      return userFromLocalStorage;
+    }
+    
     
   }
 

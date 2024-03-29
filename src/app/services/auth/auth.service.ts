@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {IUser} from '../../models/users';
+import {IUser, USER_LOCALSTORAGE_NAME} from '../../models/users';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class AuthService {
   constructor() {}
 
   checkUser(user: IUser): boolean {
-    const isUserInLocalStorage = window.localStorage.getItem(`user-${user.login}`);
+    const isUserInLocalStorage = window.localStorage.getItem(USER_LOCALSTORAGE_NAME);
     const isUserExists = this.usersStorage.find(
       (el) => el.login === user.login
     );
@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   delUserFromLocalstorage(user: IUser){
-    window.localStorage.removeItem(`user-${user.login}`);
+    window.localStorage.removeItem(USER_LOCALSTORAGE_NAME);
     // console.log('Текущий пользователь: ',isUserInLocalStorage);
     
   }

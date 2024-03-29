@@ -4,3 +4,5 @@ export interface IUser {
     password: string,
     cardNumber?: string
 }
+
+export const USER_LOCALSTORAGE_NAME = 'userApp';

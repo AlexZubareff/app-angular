@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { IUser } from 'src/app/models/users';
+import { IUser, USER_LOCALSTORAGE_NAME } from 'src/app/models/users';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -53,7 +53,7 @@ if(this.saveLocalStorageValue){
 
 // const {password, ...user} = newUser;
 
-window.localStorage.setItem(`user-${newUser.login}`,JSON.stringify(newUser));
+window.localStorage.setItem(USER_LOCALSTORAGE_NAME, JSON.stringify(newUser));
 
 console.log(window.localStorage.getItem('current user'));
 
