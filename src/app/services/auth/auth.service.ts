@@ -43,13 +43,19 @@ export class AuthService {
   }
 
   setUser(user: IUser): void {
-    const isUserExists = this.usersStorage.find(
-      (el) => el.login === user.login
-    );
-    if (!isUserExists && user?.login) {
+    // const isUserExists = this.usersStorage.find(
+    //   (el) => el.login === user.login
+    // );
+    // if (!isUserExists && user?.login) {
+    //   this.usersStorage.push(user);
+    //   console.log('setUser usersStorage: ', this.usersStorage);
+    // }
+    if (user) {
       this.usersStorage.push(user);
       console.log('setUser usersStorage: ', this.usersStorage);
     }
+
+
   }
 
   delUserFromLocalstorage(user: IUser){
