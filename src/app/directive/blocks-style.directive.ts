@@ -22,6 +22,7 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
   @Input() initFirst: boolean = false;
 
   @Output() renderComplete = new EventEmitter();
+  @Output() onEnter = new EventEmitter();
 
   private items: HTMLElement[];
   private index: number = 0;
@@ -95,7 +96,10 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
           'border: 2px solid red'
         );
       }
+    } else if (ev.key === 'Enter') {
+      this.onEnter.emit({index: this.index});
     }
+
     this.activeElementIndex = this.index;
   }
 

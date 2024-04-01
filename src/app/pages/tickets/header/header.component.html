@@ -1,7 +1,18 @@
 <div >
     <p-menubar [model]="items">
         <div *ngIf="user" class="header-login">
-            Login: {{user.login}}
+            Пользователь: {{user.login}}
+        </div>
+        <div>
+
+            <div>
+                {{ weekDay }} 
+                
+            </div>
+            <div>
+               
+                {{ data }}
+            </div>
         </div>
     </p-menubar>
 </div>

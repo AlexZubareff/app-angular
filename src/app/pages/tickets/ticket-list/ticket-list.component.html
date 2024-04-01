@@ -10,8 +10,8 @@
     
     </div>
     <div class="m-5">
-        <p>Tours found: {{ tourWrap.childElementCount }}</p>
-        <p>Current Tour index: {{ blockDirective.activeElementIndex }}</p>
+        <p>Найдено туров: {{ (tickets | searchTour: filter).length }}</p>
+        <!-- <p>Current Tour index: {{ blockDirective.activeElementIndex }}</p> -->
     </div>
           <!-- <app-search></app-search> -->
         <div appBlocksStyle
@@ -19,6 +19,7 @@
              #blockDirective="blockStyle"
              [selector]="'.ticket-item'" 
              [initFirst]="true"
+             (onEnter)="onEnter($event)"
              (renderComplete)="directiveRenderComplete($event)" 
         class="d-flex flex-row flex-wrap justify-content-around">
         

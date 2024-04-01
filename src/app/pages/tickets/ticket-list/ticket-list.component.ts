@@ -48,6 +48,12 @@ export class TicketListComponent implements OnInit {
     this.router.navigate([`/tickets/ticket/${item.id}`])
   }
 
+  onEnter(ev: {index: number}): void {
+    const tour = this.tickets[ev.index];
+    this.goToTicketInfoPage(tour);
+
+  }
+
   directiveRenderComplete(ev: boolean) {
     this.blockDirective.initStyle(3);
   }

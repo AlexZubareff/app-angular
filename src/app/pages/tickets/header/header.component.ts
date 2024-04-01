@@ -15,6 +15,14 @@ export class HeaderComponent implements OnInit {
   private settingsActive = false;
   public user: IUser;
   items: MenuItem[];
+  public weekDay : string = this.getWeekDay();
+  public data = new Date().toLocaleString('ru', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });;
+  
+
 
   @Input() menuType: IMenuType;
 
@@ -26,11 +34,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-          label: 'Tikets',
+          label: 'Билеты',
           routerLink: ['tickets-list']
       },
       {
-        label: 'Exit',
+        label: 'Выход',
+        icon:'pi pi-fw pi-power-off',
         command: () => this.authService.delUserFromLocalstorage(this.user),
         routerLink: ['/auth']
     },
@@ -50,23 +59,28 @@ ngOnChanges(ev: SimpleChanges): void {
 initMenuItems(): MenuItem[] {
   return [
     {
-      label: 'Tikets',
+      label: 'Билеты',
       routerLink:['tickets-list']
     },
     {
-      label: 'Settings',
+      label: 'Настройки',
       routerLink:['/settings'],
       visible: this.settingsActive
     },
     {
-      label: 'Exit',
+      label: 'Выход',
+      
       routerLink:['/auth']
     },
 
   ];
 }
 
-
+getWeekDay(){
+  let index = new Date().getDay()
+  let days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+  return days[index];
+}
 
 
   }
