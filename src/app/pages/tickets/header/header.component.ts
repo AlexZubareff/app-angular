@@ -64,12 +64,13 @@ initMenuItems(): MenuItem[] {
     },
     {
       label: 'Настройки',
-      routerLink:['/settings'],
+      routerLink:['settings'],
       visible: this.settingsActive
     },
     {
       label: 'Выход',
-      
+      icon:'pi pi-fw pi-power-off',
+      command: () => this.authService.delUserFromLocalstorage(this.user),
       routerLink:['/auth']
     },
 

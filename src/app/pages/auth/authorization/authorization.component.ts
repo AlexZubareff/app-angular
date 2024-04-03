@@ -14,10 +14,10 @@ import { UserService } from 'src/app/services/user/user.service';
 
 export class AuthorizationComponent implements OnInit, OnDestroy  {
  
-  loginText: string = 'Login';
-  passText: string = 'Password';
+  loginText: string = 'Логин';
+  passText: string = 'Пароль';
   statusText: string = 'VIP';
-  cardText: string = 'Card number';
+  cardText: string = 'Номер клубной карты';
   authTButtonText: string ;
 
 
@@ -38,7 +38,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
 
 
   ngOnInit(): void {
-    this.authTButtonText = 'Authorization';
+    this.authTButtonText = 'Войти';
   }
 
   ngOnDestroy(): void {

@@ -18,8 +18,8 @@ export class AsideComponent implements OnInit {
   ngOnInit(): void {
 
     this.menuTypes = [
-      {type: 'custom', label : 'Custom'},
-      {type: 'extended', label : 'Extended'}
+      {type: 'custom', label : 'Обычный'},
+      {type: 'extended', label : 'Расширенный'}
     ]
 
   }

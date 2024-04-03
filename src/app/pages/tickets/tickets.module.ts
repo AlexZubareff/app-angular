@@ -16,6 +16,7 @@ import { AsideComponent } from './aside/aside.component';
 import { SearchComponent } from 'src/app/components/search/search.component';
 import { SearchTourPipe } from 'src/app/pipes/search-tour/search-tour.pipe';
 import { BlocksStyleDirective } from 'src/app/directive/blocks-style.directive';
+import { SettingsComponent } from '../settings/settings/settings.component';
 
 
 
@@ -29,7 +30,8 @@ import { BlocksStyleDirective } from 'src/app/directive/blocks-style.directive';
     AsideComponent,
     SearchComponent,
     SearchTourPipe,
-    BlocksStyleDirective
+    BlocksStyleDirective,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
