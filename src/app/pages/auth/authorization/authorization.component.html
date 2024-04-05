@@ -1,4 +1,7 @@
-<div class="d-flex flex-column col-4 registration-input-wrap">
+<div 
+class="d-flex flex-column col-4 registration-input-wrap"
+
+>
        <div class="my-1">
               <span class="mx-3">{{loginText}}</span>
               <input type="text" pInputText [(ngModel)]="login" [ngClass]="{'input-error': !login}" />
@@ -17,8 +20,7 @@
                      <input type="text" class="mt-3" pInputText [(ngModel)]="cardNumber" />
               </div>
        </div>
-
-</div>
-<div class="mt-5 d-flex justify-content-center col-4">
-       <button (click)="onAuth($event)" type="button" class="btn btn-primary">{{ authTButtonText }}</button>
+       <div class="mt-5 d-flex justify-content-center col-4">
+              <button (click)="onAuth($event)" type="button" class="btn btn-primary">{{ authTButtonText }}</button>
+       </div>
 </div>

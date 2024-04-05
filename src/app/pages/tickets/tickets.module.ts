@@ -6,6 +6,7 @@ import {ButtonModule} from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {CalendarModule} from 'primeng/calendar';
 
 import { TicketsRoutingModule } from './tickets-routing.module';
 import { TicketsComponent } from './tickets.component';
@@ -41,7 +42,8 @@ import { SettingsComponent } from '../settings/settings/settings.component';
     ButtonModule,
     DropdownModule,
     FormsModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    CalendarModule
   ]
 })
 export class TicketsModule { }
