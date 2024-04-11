@@ -54,11 +54,17 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
 
     const authUser: IUser = {
       password: this.password,
-      login: this.login
+      login: this.login,
+      cardNumber: this.cardNumber
     }
 
     if(this.authService.checkUser(authUser)){
       this.userService.setUser(authUser);
+      this.userService.setToken('user-private-token');
+      window.localStorage.setItem(
+          'token',
+          'user-private-token'
+        );
       this.router.navigate(['tickets/tickets-list']);
       // this.messageService.add({severity:'success', summary:'Service Message', detail:'User exists'});
       console.log('auth true');
@@ -70,4 +76,13 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
     
   }
 
+  onEnter(ev: KeyboardEvent): void {
+    console.log(ev.key);
+    
+    if(ev.key === 'Enter') {
+      this.onAuth(ev);
+    }
+    
+
+  }
 }

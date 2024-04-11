@@ -1,4 +1,7 @@
-<div class="d-flex flex-column col-4 registration-input-wrap">
+<div 
+class="d-flex flex-column col-4 registration-input-wrap"
+(keydown)="onEnter($event)"
+>
        <div class="my-1">
               <span class="mx-3">Логин</span>
               <input type="text" pInputText [(ngModel)]="login" [ngClass]="{'input-error': !login}" />

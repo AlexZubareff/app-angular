@@ -34,35 +34,22 @@ export class TicketListComponent implements OnInit {
   ngOnInit(): void {
 
     this.tourUnsubscriber = this.ticketService.ticketType$.subscribe((data:ITourTypeSelect) => {  
-      console.log('data', data)
+      console.log('data', data);
+
       let ticketType: string;
+      
       switch (data.value) {
         case "single":
           this.tickets = this.ticketsCopy.filter((el) => el.type === "single");
-          setTimeout(() => {
- 
-            this.blockDirective.updateItems();
-      
-            this.blockDirective.initStyle(0);  // сбрасываем индекс на 0 элемент
-          });
+  
           break;
         case "multi":
           this.tickets = this.ticketsCopy.filter((el) => el.type === "multi");
-          setTimeout(() => {
- 
-            this.blockDirective.updateItems();
-      
-            this.blockDirective.initStyle(0);  // сбрасываем индекс на 0 элемент
-          });
+
           break;
         case "all":
           this.tickets = [...this.ticketsCopy];
-          setTimeout(() => {
- 
-            this.blockDirective.updateItems();
-      
-            this.blockDirective.initStyle(0);  // сбрасываем индекс на 0 элемент
-          });
+
           break;
  
       }
@@ -73,6 +60,12 @@ export class TicketListComponent implements OnInit {
         this.tickets = this.ticketsCopy.filter((el) => el.date === dateValue);
       }
 
+      setTimeout(() => {
+ 
+        this.blockDirective.updateItems();
+  
+        this.blockDirective.initStyle(0);  // сбрасываем индекс на 0 элемент
+      });
     });
 
     this.loading = true;

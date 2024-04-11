@@ -73,4 +73,14 @@ export class RegistrationComponent implements OnInit {
       });
     }
   }
+
+  onEnter(ev: KeyboardEvent): void {
+    console.log(ev.key);
+    
+    if(ev.key === 'Enter') {
+      this.register(ev);
+    }
+    
+
+  }
 }

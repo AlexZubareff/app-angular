@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ObservableExampleService } from './services/testing/observable-example.service';
+import { ConfigService } from './services/config/config.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,10 @@ import { ObservableExampleService } from './services/testing/observable-example.
 export class AppComponent {
   title = 'ticketSales2024';
 
-  constructor(private testing: ObservableExampleService){
+  constructor(
+    private testing: ObservableExampleService,
+    private config: ConfigService,
+    ){
     testing.initObservable()
   }
 
@@ -47,11 +51,14 @@ export class AppComponent {
 
     const myBehavior = this.testing.getBehaviorSubject();
     myBehavior.subscribe((data) => {
-      console.log('first data behaviorSubject: ', data);
+      // console.log('first data behaviorSubject: ', data);
     });
 
     myBehavior.next('NEW data from behaviorSubject');
     myBehavior.next('NEW data_1 from behaviorSubject');
 
+    // this.config.configLoad();
   }
+
+  
 }

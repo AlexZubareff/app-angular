@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { IMenuType } from 'src/app/models/menuType';
 import { ITourTypeSelect } from 'src/app/models/tours';
 import { TicketService } from 'src/app/services/tickets/ticket.service';
@@ -12,6 +13,8 @@ export class AsideComponent implements OnInit {
 
   menuTypes: IMenuType[];
   public selectedMenuType: IMenuType;
+  public showClear: boolean;
+ 
 
   tourTypes: ITourTypeSelect[] = [
     {label: 'Все', value: 'all'},
@@ -23,6 +26,7 @@ export class AsideComponent implements OnInit {
 
   constructor(
     private ticketService: TicketService,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -43,9 +47,27 @@ export class AsideComponent implements OnInit {
     this.ticketService.updateTour(ev.value)
   }
 
-  selectDate(ev: string) {
+  selectDate(ev: any) {
     console.log('ev', ev)
     this.ticketService.updateTour({date:ev})
 }
 
+initRestError(): void {
+  this.ticketService.getError().subscribe({
+    next: (data) => {
+    },
+    error: (err) => {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Service Message',
+        detail: err.error,
+        
+      });
+      console.log('err', err)
+    }
+  }
+    );
+  } 
 }
+
+

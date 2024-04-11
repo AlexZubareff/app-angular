@@ -7,6 +7,8 @@ import { IUser, USER_LOCALSTORAGE_NAME } from 'src/app/models/users';
 export class UserService {
 
   private user: IUser;
+
+  private token: string;
   
   constructor() { }
 
@@ -25,6 +27,19 @@ export class UserService {
     if(user) {
       this.user = user;
     }
+  }
+
+  setToken(token: string): void {
+    this.token = token;
+  }
+  getToken(): string | null {
+    if(this.token){
+      return this.token
+    } else {
+      const tokenFromLocalStorage = window.localStorage.getItem('token');
+      return tokenFromLocalStorage;
+    }
+    
   }
 
 }

@@ -1,8 +1,61 @@
 <div class="ticket-info-wrap">
     <div class="m-5">
         <a [routerLink]="['/tickets/tickets-list']" routerLinkActive="router-link-active" >Back</a>
-        <div class="mt-3">
-            {{ticket?.name}}
+        <div class="mt-4">
+            <h4>Информация о туре</h4>
+            <div class="tiket-info">
+                {{ticket?.name}}
+            </div>
+            
+        </div>
+        <div class="mt-4">
+           <h4>Личная Информация</h4>
+           <div class="mt-3 user-info" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="mt-3">
+                <span class="mx-3">Имя</span>
+                <input type="text"
+                       class="mt-3"
+                       pInputText
+                       formControlName="firstName"/>
+            </div>
+            <div class="mt-3">
+                <span class="mx-3">Фамилия</span>
+                <input type="text"
+                       class="mt-3"
+                       pInputText
+                       formControlName="lastName"/>
+            </div>
+            <div class="mt-3">
+                <span class="mx-3">Номер карты</span>
+                <input type="text"
+                       class="mt-3"
+                       pInputText
+                       formControlName="cardNumber"/>
+            </div>
+            <div class="mt-3">
+                <span class="mx-3">Возраст</span>
+                <p-inputNumber formControlName="age"
+                               [showButtons]="true">
+                </p-inputNumber>
+            </div>
+            <div class="mt-3">
+                <span class="mx-3">Дата рождения</span>
+               <p-calendar formControlName="birthDay"
+                           (onSelect)="selectDate($event)"
+                           >
+            </p-calendar>
+            </div>
+            <div class="mt-3">
+                <span class="mx-3">Гражданство</span>
+                <input type="text"
+                       class="mt-3"
+                       pInputText
+                       formControlName="citizen"/>
+            </div>
+            <div class="mt-4">
+                <button class="btn-success btn" type="submit" [disabled]="!userForm.valid">Перейти к оформлению</button>
+            </div>
+        </div>
         </div>
     </div>
 </div>

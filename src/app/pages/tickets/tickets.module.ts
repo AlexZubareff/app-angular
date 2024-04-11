@@ -18,6 +18,8 @@ import { SearchComponent } from 'src/app/components/search/search.component';
 import { SearchTourPipe } from 'src/app/pipes/search-tour/search-tour.pipe';
 import { BlocksStyleDirective } from 'src/app/directive/blocks-style.directive';
 import { SettingsComponent } from '../settings/settings/settings.component';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -43,7 +45,11 @@ import { SettingsComponent } from '../settings/settings/settings.component';
     DropdownModule,
     FormsModule,
     ProgressSpinnerModule,
-    CalendarModule
+    CalendarModule,
+    ToastModule
+  ],
+  providers: [
+    MessageService,
   ]
 })
 export class TicketsModule { }

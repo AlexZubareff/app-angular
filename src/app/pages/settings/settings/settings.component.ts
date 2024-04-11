@@ -19,6 +19,10 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.subjectScope = this.testing.getSubject();
+
+
     // this.subjectScope.subscribe((data) => {
     //   console.log('settings first subjectScope data: ', data);
     // })
@@ -31,7 +35,8 @@ export class SettingsComponent implements OnInit {
    this.subjectUnsubscribe = this.subjectScope.subscribe((data: string) => {
     console.log('data: ', data)
   })
-  this.subjectScope.next('settings subject value');
+
+  // this.subjectScope.next('subData');
   }
 
   ngOnDestroy(){

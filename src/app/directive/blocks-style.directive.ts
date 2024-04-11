@@ -58,7 +58,7 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
 
   initKeyUp(ev: KeyboardEvent): void {
     const indexCount = this.items.length;
-    console.log(indexCount);
+    // console.log(indexCount);
 
     if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') {
       (this.items[this.index] as HTMLElement).removeAttribute('style');
@@ -74,7 +74,7 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
         );
       } else {
         this.index--;
-        console.log(this.index);
+        // console.log(this.index);
         (this.items[this.index] as HTMLElement).setAttribute(
           'style',
           'border: 2px solid red'
@@ -82,7 +82,7 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
       }
     } else if (ev.key === 'ArrowLeft') {
       this.index--;
-      console.log(this.index);
+      // console.log(this.index);
       if (this.index >= 0) {
         (this.items[this.index] as HTMLElement).setAttribute(
           'style',
@@ -104,7 +104,7 @@ export class BlocksStyleDirective implements OnInit, AfterViewInit, OnChanges {
   }
 
   initStyle(index: number) {
-    console.log('Item index: ', this.items[index]);
+    // console.log('Item index: ', this.items[index]);
 
     if (this.items[index]) {
       (this.items[index] as HTMLElement).setAttribute(
