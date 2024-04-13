@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription, take } from 'rxjs';
+import { ISettings } from 'src/app/models/settings';
+import { SettigsService } from 'src/app/services/settings/settigs.service';
 import { ObservableExampleService } from 'src/app/services/testing/observable-example.service';
 
 @Component({
@@ -9,18 +11,23 @@ import { ObservableExampleService } from 'src/app/services/testing/observable-ex
 })
 export class SettingsComponent implements OnInit {
 
-  private subjectScope: Subject<string> = this.testing.getSubject();
+  // private subjectScope: Subject<string> = this.testing.getSubject();
   private subjectUnsubscribe: Subscription;
+  settingsData: Subscription;
+  settingsDataSubject: Subscription;
 
 
 
-  constructor(private testing: ObservableExampleService){
+  constructor(
+    private testing: ObservableExampleService,
+    private settingsService: SettigsService 
+    ){
     testing.initObservable()
   }
 
   ngOnInit(): void {
 
-    this.subjectScope = this.testing.getSubject();
+    // this.subjectScope = this.testing.getSubject();
 
 
     // this.subjectScope.subscribe((data) => {
@@ -32,15 +39,28 @@ export class SettingsComponent implements OnInit {
   //  this.subjectScope.next('settings subject value');
 
 
-   this.subjectUnsubscribe = this.subjectScope.subscribe((data: string) => {
-    console.log('data: ', data)
-  })
+  //  this.subjectUnsubscribe = this.subjectScope.subscribe((data: string) => {
+  //   console.log('data: ', data)
+  // })
 
   // this.subjectScope.next('subData');
+
+
+
+  //settingsData observable
+  this.settingsData = this.settingsService.loadUserSettings().subscribe((data) => {
+    console.log('settings data: ', data);
+  })
+
+  // settings data subject
+  this.settingsDataSubject = this.settingsService.getSettingsSubjectObservable().pipe(take(1)).subscribe(
+    (data) => {
+      console.log('settings data from subject: ', data);
+    })
   }
 
   ngOnDestroy(){
-    this.subjectUnsubscribe .unsubscribe()
+    this.settingsData .unsubscribe()
   }
 
 

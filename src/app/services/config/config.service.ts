@@ -6,8 +6,7 @@ import { IConfig } from 'src/app/models/config';
   providedIn: 'root'
 })
 export class ConfigService {
-  config: IConfig;
-  static config: Object;
+  static config: IConfig;
 
   constructor(
     private http: HttpClient
@@ -15,7 +14,7 @@ export class ConfigService {
 
   configLoad (): void {
     const jsonFile = `assets/config/config.json`;
-    this.http.get(jsonFile).subscribe((data) => {
+    this.http.get<IConfig>(jsonFile).subscribe((data) => {
       if (data && typeof(data) === 'object') {
         ConfigService.config = data;
  
@@ -26,14 +25,14 @@ export class ConfigService {
 
   loadPromise() {
     const jsonFile = `assets/config/config.json`;
-    const configPromise =  new Promise<void>((resolve, reject) => {
+    const configPromise =  new Promise<IConfig>((resolve, reject) => {
       this.http.get(jsonFile).toPromise().then((response: any ) => {
         if (response && typeof(response) === 'object') {
           ConfigService.config = response;
           const config = ConfigService.config;
           if (config) {
             // set origin host
-            resolve();
+            resolve(config);
           } else {
             reject('Ошибка при инициализации конфига - неверный формат '+config);
           }

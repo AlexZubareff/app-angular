@@ -16,6 +16,9 @@
     <p-calendar (onSelect)="selectDate($event)"  ></p-calendar>
   </div>
   <div class="mt-4">
-    <button class="btn-success btn" (click)="initRestError()">Ошибка</button>
-</div>
+    <button class="btn-warning btn" (click)="initRestError()">Ошибка</button>
+  </div>
+  <div class="mt-4">
+    <button class="btn-primary btn" (click)="initSettinsData()" >Обновить настройки</button>
+  </div>
 <p-toast position="top-center"></p-toast>

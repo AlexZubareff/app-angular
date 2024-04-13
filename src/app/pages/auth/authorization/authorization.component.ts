@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
+import { ConfigService } from 'src/app/services/config/config.service';
+
 
 
 @Component({
@@ -25,6 +27,8 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
   password: string;
   cardNumber: string;
   selectedValue: boolean;
+
+  showCardNumber: boolean;
   
 
   constructor(
@@ -39,6 +43,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
 
   ngOnInit(): void {
     this.authTButtonText = 'Войти';
+    this.showCardNumber = ConfigService.config.useUserCard;
   }
 
   ngOnDestroy(): void {

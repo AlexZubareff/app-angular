@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { IMenuType } from 'src/app/models/menuType';
 import { ITourTypeSelect } from 'src/app/models/tours';
+import { SettigsService } from 'src/app/services/settings/settigs.service';
 import { TicketService } from 'src/app/services/tickets/ticket.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class AsideComponent implements OnInit {
   constructor(
     private ticketService: TicketService,
     private messageService: MessageService,
+    private settingsService: SettigsService
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +54,7 @@ export class AsideComponent implements OnInit {
     this.ticketService.updateTour({date:ev})
 }
 
-initRestError(): void {
+  initRestError(): void {
   this.ticketService.getError().subscribe({
     next: (data) => {
     },
@@ -68,6 +70,10 @@ initRestError(): void {
   }
     );
   } 
+
+  initSettinsData(): void {
+    this.settingsService.loadUserSettingsSubject({saveToken: false});
+  }
 }
 
 

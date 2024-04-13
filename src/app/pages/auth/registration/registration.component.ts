@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { IUser, USER_LOCALSTORAGE_NAME } from 'src/app/models/users';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ConfigService } from 'src/app/services/config/config.service';
 
 @Component({
   selector: 'app-registration',
@@ -14,16 +15,18 @@ export class RegistrationComponent implements OnInit {
   passwordRepeat: string;
   email: string;
   cardNumber: string;
-
   saveLocalStorageValue: boolean;
+  showCardNumber: boolean;
+
 
   constructor(
     private messageService: MessageService,
-    private authService: AuthService,
-    
-  ) {}
+    private authService: AuthService
+      ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showCardNumber = ConfigService.config.useUserCard;
+  }
 
   register(ev: Event): void | boolean {
 
