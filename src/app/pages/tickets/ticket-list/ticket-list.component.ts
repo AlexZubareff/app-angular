@@ -4,7 +4,7 @@ import { TicketsStorageService } from 'src/app/services/ticketsStorage/ticketsSt
 import { TicketService } from 'src/app/services/tickets/ticket.service';
 import {  Router } from '@angular/router';
 import { BlocksStyleDirective } from 'src/app/directive/blocks-style.directive';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime, fromEvent } from 'rxjs';
 
 
 @Component({
@@ -24,6 +24,11 @@ export class TicketListComponent implements OnInit {
   @ViewChild('tourWrap', {read: BlocksStyleDirective}) blockDirective:BlocksStyleDirective;
 
   @ViewChild('tourWrap') tourWrap: ElementRef;
+
+  @ViewChild('ticketSearch') ticketSearch: ElementRef;
+
+  searchTicketSub: Subscription;
+  ticketSearchValue: string;
 
   constructor(
     private ticketService: TicketService,
@@ -82,13 +87,28 @@ export class TicketListComponent implements OnInit {
     this.loading = false;
   }
 
-  ngOnDestroy() {
-    this.tourUnsubscriber.unsubscribe();
-   }
+
 
   ngAfterViewInit() {
+
+    const fromEventOserver = fromEvent(this.ticketSearch.nativeElement, 'keyup', {passive: true});
+
+    this.searchTicketSub = fromEventOserver.pipe(debounceTime(200)).subscribe (
+      (ev: any) => {
+        if(this.ticketSearchValue) {
+          this.tickets = this.ticketsCopy.filter((el) => el.name.toLowerCase().includes(this.ticketSearchValue.toLowerCase()));
+        } else {
+          this.tickets = [...this.ticketsCopy];
+        }
+      }
+    )
     
   }
+
+  ngOnDestroy() {
+    this.tourUnsubscriber.unsubscribe();
+    this.searchTicketSub.unsubscribe();
+   }
 
   goToTicketInfoPage(item: ITour) {
     this.router.navigate([`/tickets/ticket/${item.id}`])

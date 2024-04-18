@@ -10,7 +10,7 @@
         </div>
         <div class="mt-4">
            <h4>Личная Информация</h4>
-           <div class="mt-3 user-info" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+           <div class="mt-3 user-info" [formGroup]="userForm" (ngSubmit)="onSubmit()"> 
             <div class="mt-3">
                 <span class="mx-3">Имя</span>
                 <input type="text"
@@ -56,6 +56,21 @@
                 <button class="btn-success btn" type="submit" [disabled]="!userForm.valid">Перейти к оформлению</button>
             </div>
         </div>
+        </div>
+        <div class="mt-4">
+            <h4>Похожие туры</h4>
+            <p-carousel [value]="nearestTours">
+                <ng-template pTemplate="header">
+
+                </ng-template>
+                <ng-template let-tour pTemplate="item" [location]="toursLocation">
+                    Название тура: {{tour.name}}
+                    <!-- Страна тура: {{ location[1].name }} -->
+                    <div class="ticket-img-nearest">
+                        <img class="w-100 h-100" src="../../../../assets/img/{{tour.img}}" alt=""/>
+                    </div>
+                </ng-template>
+            </p-carousel>
         </div>
     </div>
 </div>

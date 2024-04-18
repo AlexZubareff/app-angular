@@ -20,6 +20,10 @@ import { BlocksStyleDirective } from 'src/app/directive/blocks-style.directive';
 import { SettingsComponent } from '../settings/settings/settings.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { InputTextModule } from 'primeng/inputtext';
+import { TabViewModule } from 'primeng/tabview';
+import { OrdersComponent } from '../orders/orders.component';
+import { OrdersModule } from '../orders/orders.module';
 
 
 
@@ -46,7 +50,10 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     ProgressSpinnerModule,
     CalendarModule,
-    ToastModule
+    ToastModule,
+    InputTextModule,
+    TabViewModule,
+    OrdersModule
   ],
   providers: [
     MessageService,

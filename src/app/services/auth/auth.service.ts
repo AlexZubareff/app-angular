@@ -5,7 +5,7 @@ import {IUser, USER_LOCALSTORAGE_NAME} from '../../models/users';
   providedIn: 'root',
 })
 export class AuthService {
-  private usersStorage: IUser[] = [];
+ private usersStorage: IUser[] = [];
 
 
   constructor() {}
@@ -54,12 +54,30 @@ export class AuthService {
       this.usersStorage.push(user);
       console.log('setUser usersStorage: ', this.usersStorage);
     }
-
-
+   
   }
 
-  delUserFromLocalstorage(user: IUser){
-    window.localStorage.removeItem(USER_LOCALSTORAGE_NAME);
+  updatePassUser(login: string, newPass: string): void {
+    if(login && newPass) {
+      for (var i = 0; i < this.usersStorage.length; i++) {
+        if (this.usersStorage[i].login == login) {
+          this.usersStorage[i].password = newPass;
+          console.log(this.usersStorage);
+          }
+    }
+      
+    }
+
+  }  
+
+  delUserFromLocalstorage(){
+    if (USER_LOCALSTORAGE_NAME) {
+      window.localStorage.removeItem(USER_LOCALSTORAGE_NAME);
+    }
+    if(window.localStorage.getItem('token')){
+      window.localStorage.removeItem('token')
+    }
+
     // console.log('Текущий пользователь: ',isUserInLocalStorage);
     
   }

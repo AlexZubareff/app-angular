@@ -38,9 +38,17 @@ export class HeaderComponent implements OnInit {
           routerLink: ['tickets-list']
       },
       {
+        label: 'Заказы',
+        routerLink: ['orders']
+      },
+      {
+        label: 'Настройки',
+        routerLink:['settings'],
+      },
+      {
         label: 'Выход',
         icon:'pi pi-fw pi-power-off',
-        command: () => this.authService.delUserFromLocalstorage(this.user),
+        command: () => this.authService.delUserFromLocalstorage(),
         routerLink: ['/auth']
     },
 
@@ -52,8 +60,8 @@ export class HeaderComponent implements OnInit {
 }
 
 ngOnChanges(ev: SimpleChanges): void {
-  this.settingsActive = this.menuType?.type === "extended";
-  this.items = this.initMenuItems();
+  // this.settingsActive = this.menuType?.type === "extended";
+  // this.items = this.initMenuItems();
 }
 
 initMenuItems(): MenuItem[] {
@@ -63,14 +71,18 @@ initMenuItems(): MenuItem[] {
       routerLink:['tickets-list']
     },
     {
+      label: 'Заказы',
+      routerLink: ['orders']
+    },
+    {
       label: 'Настройки',
       routerLink:['settings'],
-      visible: this.settingsActive
+      // visible: this.settingsActive
     },
     {
       label: 'Выход',
       icon:'pi pi-fw pi-power-off',
-      command: () => this.authService.delUserFromLocalstorage(this.user),
+      command: () => this.authService.delUserFromLocalstorage(),
       routerLink:['/auth']
     },
 

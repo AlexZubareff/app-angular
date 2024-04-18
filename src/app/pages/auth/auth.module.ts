@@ -11,12 +11,14 @@ import {CheckboxModule} from 'primeng/checkbox';
 import { RegistrationComponent } from './registration/registration.component';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ChangepassComponent } from './changepass/changepass.component';
 
 @NgModule({
   declarations: [
     AuthorizationComponent,
     AuthComponent,
     RegistrationComponent,
+    ChangepassComponent
 
   ],
   imports: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TicketRestService } from '../rest/ticket-rest.service';
-import { ITour, ITourTypeSelect } from 'src/app/models/tours';
-import { Observable, Subject, map } from 'rxjs';
+import { INearestTour, INearestTourWithLocation, ITour, ITourLocation, ITourTypeSelect } from 'src/app/models/tours';
+import { Observable, Subject, forkJoin, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,21 @@ export class TicketService {
     ));
 }
 
+// getTicketsWithLocation(): Observable<INearestTourWithLocation[]> {
+//   forkJoin([this.getNearestTours(), this.getToursLocaton()]).pipe((data) => {
+//     console.log('forkJoin DATA: ', data);
+//     const nearestTours = data[0];
+//     const toursLocation = data[1];
+//   }).subscribe()
+//   console.log(nearestTours);
+  
+
+
+//    return data
+
+// }
+
+
   getTicketTypeObservable(): Observable<ITourTypeSelect> {
     return this.ticketSubject.asObservable(); 
   }
@@ -36,6 +51,14 @@ export class TicketService {
 
   getError(): Observable<any> {
     return this.ticketServiceRest.getRestError();
+  }
+
+  getNearestTours(): Observable<INearestTour[]> {
+    return this.ticketServiceRest.getNearestTickets();
+  }
+
+  getToursLocaton(): Observable<ITourLocation[]> {
+    return this.ticketServiceRest.getLocationList();
   }
 
 }
