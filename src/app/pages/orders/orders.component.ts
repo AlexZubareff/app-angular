@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TreeNode } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { OrdersService } from 'src/app/services/orders/orders.service';
 import { OrderType } from 'src/app/shared/orders';
 
@@ -9,7 +9,8 @@ import { OrderType } from 'src/app/shared/orders';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
+  private _destroyer: Subscription;
 
   tableData$: Observable<TreeNode<OrderType[]>[]>;
   tableData: TreeNode<OrderType[]>[] = [];
@@ -23,10 +24,15 @@ export class OrdersComponent implements OnInit {
 
 
 
-    this.orderService.groupOrders$.subscribe(()=>{
+    this._destroyer = this.orderService.groupOrders$.subscribe(()=>{
       this.initOrders();
     })
   }
+
+  ngOnDestroy(): void {
+    this._destroyer.unsubscribe();
+  }
+
 
   initOrders(): void {
     this.tableData$ = this.orderService.getOrders();

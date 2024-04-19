@@ -39,7 +39,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
   
   updateSelectedType(ev: IMenuType): void {

@@ -1,6 +1,7 @@
 import { ITour } from "../models/tours";
 
-export type OrderType = ITour | {userId?: number};
+export type OrderType = ITour & {userId?: number};
+export type OrderPropsType = keyof OrderType; 
 
 export const  ORDERSMOCK: OrderType[] = [
     {

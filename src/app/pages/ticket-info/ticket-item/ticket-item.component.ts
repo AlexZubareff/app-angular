@@ -56,6 +56,10 @@ export class TicketItemComponent implements OnInit, AfterViewInit {
       }
     )
 
+    // get nearest tours with location
+
+    this.ticketService.getTicketsWithLocation();
+
 
     // params
     const routeIdParam = this.route.snapshot.paramMap.get('id');

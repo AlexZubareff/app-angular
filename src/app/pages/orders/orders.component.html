@@ -1,6 +1,6 @@
 <app-order-header></app-order-header>
 
-<p-treeTable [value]="(tableData$ | async)!">
+<p-treeTable [value]="tableData$ | async">
     <ng-template pTemplate="header">
         <tr>
             <th>Название</th>

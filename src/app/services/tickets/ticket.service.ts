@@ -26,19 +26,29 @@ export class TicketService {
     ));
 }
 
-// getTicketsWithLocation(): Observable<INearestTourWithLocation[]> {
-//   forkJoin([this.getNearestTours(), this.getToursLocaton()]).pipe((data) => {
-//     console.log('forkJoin DATA: ', data);
-//     const nearestTours = data[0];
-//     const toursLocation = data[1];
-//   }).subscribe()
-//   console.log(nearestTours);
+getTicketsWithLocation(): void {
+  const tours = this.getNearestTours().subscribe((data) =>
+  {
+    console.log('tours DATA: ', data);
+  });
+
+  const location =  this.getToursLocaton().subscribe((data) =>
+  {
+    console.log('tours DATA: ', data);
+  });
+    
+   
+    // const nearestTours = data[0];
+    // const toursLocation = data[1];
+  }
+  // .subscribe()
+  // console.log(nearestTours);
   
 
 
-//    return data
+  //  return data
 
-// }
+
 
 
   getTicketTypeObservable(): Observable<ITourTypeSelect> {
