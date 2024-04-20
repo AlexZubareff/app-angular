@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { INearestTour, ITour, ITourLocation } from 'src/app/models/tours';
+import { INearestTour, INearestTourWithLocation, ITour, ITourLocation } from 'src/app/models/tours';
 import { IUser } from 'src/app/models/users';
 import { TicketService } from 'src/app/services/tickets/ticket.service';
 import { TicketsStorageService } from 'src/app/services/ticketsStorage/ticketsStorage.service';
@@ -21,6 +21,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit {
 
   nearestTours: INearestTour[];
   toursLocation: ITourLocation[];
+
+  nearestToursWithLocation: INearestTourWithLocation[];
 
   constructor(
     private route: ActivatedRoute,
@@ -58,7 +60,11 @@ export class TicketItemComponent implements OnInit, AfterViewInit {
 
     // get nearest tours with location
 
-    this.ticketService.getTicketsWithLocation();
+    this.ticketService.getTicketsWithLocation().subscribe((data) => {
+      this.nearestToursWithLocation = data;
+      console.log('nearestToursWithLocation: ', this.nearestToursWithLocation);
+
+    });
 
 
     // params

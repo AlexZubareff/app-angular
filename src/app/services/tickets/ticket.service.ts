@@ -9,6 +9,10 @@ import { Observable, Subject, forkJoin, map } from 'rxjs';
 export class TicketService {
   http: any;
   tickets: ITour[];
+
+  nearestToursWithLocation: INearestTourWithLocation[];
+  // locationTours: ITourLocation[];
+
   private ticketSubject = new Subject<ITourTypeSelect>();
   readonly ticketType$ = this.ticketSubject.asObservable();
 
@@ -26,17 +30,46 @@ export class TicketService {
     ));
 }
 
-getTicketsWithLocation(): void {
-  const tours = this.getNearestTours().subscribe((data) =>
-  {
-    console.log('tours DATA: ', data);
-  });
+getTicketsWithLocation(): Observable<INearestTourWithLocation[]> {
 
-  const location =  this.getToursLocaton().subscribe((data) =>
-  {
-    console.log('tours DATA: ', data);
-  });
+ return forkJoin([this.getNearestTours(),this.getToursLocaton()]).pipe(
+  map(data => data[0].map(tourItem => {
+    const newTourItem: INearestTourWithLocation = tourItem;
+
+    console.log('newTourItem: ', newTourItem);
     
+    newTourItem.location = data[1].find(locationItem => tourItem.locationId === locationItem.id);
+
+    return newTourItem;
+  }))
+)
+
+// .subscribe((data) =>
+//   {
+//     console.log('NEW TOUR DATA: ', data);
+    
+//     this.nearestToursWithLocation = data;
+//   })
+
+  // const tours = this.getNearestTours().subscribe((data) =>
+  // {
+  //   console.log('tours DATA: ', data);
+  //   this.nearestTours = data;
+  //   console.log('nearestTours: ', data);
+
+
+  // });
+
+  // const location =  this.getToursLocaton().subscribe((data) =>
+  // {
+  //   console.log('location DATA: ', data);
+  //   this.locationTours = data;
+  //   console.log('locationTours: ', data);
+
+  // });
+    
+
+  
    
     // const nearestTours = data[0];
     // const toursLocation = data[1];

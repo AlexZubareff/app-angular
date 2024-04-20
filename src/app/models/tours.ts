@@ -24,5 +24,5 @@ export interface ITourLocation {
     id: string
 }
 export interface INearestTourWithLocation extends ITour {
-location: ITourLocation
+    location?: ITourLocation
 }
