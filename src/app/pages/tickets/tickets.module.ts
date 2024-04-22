@@ -24,7 +24,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { OrdersComponent } from '../orders/orders.component';
 import { OrdersModule } from '../orders/orders.module';
-
+import { StatisticComponent } from '../settings/statistic/statistic.component';
+import {TableModule} from 'primeng/table'
 
 
 
@@ -38,7 +39,8 @@ import { OrdersModule } from '../orders/orders.module';
     SearchComponent,
     SearchTourPipe,
     BlocksStyleDirective,
-    SettingsComponent
+    SettingsComponent,
+    StatisticComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { OrdersModule } from '../orders/orders.module';
     ToastModule,
     InputTextModule,
     TabViewModule,
-    OrdersModule
+    OrdersModule,
+    TableModule
   ],
   providers: [
     MessageService,

@@ -30,58 +30,38 @@ export class TicketService {
     ));
 }
 
-getTicketsWithLocation(): Observable<INearestTourWithLocation[]> {
 
- return forkJoin([this.getNearestTours(),this.getToursLocaton()]).pipe(
-  map(data => data[0].map(tourItem => {
-    const newTourItem: INearestTourWithLocation = tourItem;
+transformData(tours: INearestTour[], location: ITourLocation[]){
+  const nearestToursWithLocation: INearestTourWithLocation[] = [];
 
-    console.log('newTourItem: ', newTourItem);
+  tours.forEach((tour) => {
+    const newTour: INearestTourWithLocation = {...tour};
+    newTour.location = location.find((location) => tour.locationId === location.id);
+    nearestToursWithLocation.push(newTour)
+
+  } );
+  return nearestToursWithLocation
+}
+
+
+
+// getTicketsWithLocation(): Observable<INearestTourWithLocation[]> {
+
+//  return forkJoin([this.getNearestTours(),this.getToursLocaton()]).pipe(
+//   map(data => data[0].map(tourItem => {
     
-    newTourItem.location = data[1].find(locationItem => tourItem.locationId === locationItem.id);
+//     const newTourItem: INearestTourWithLocation = tourItem;
 
-    return newTourItem;
-  }))
-)
-
-// .subscribe((data) =>
-//   {
-//     console.log('NEW TOUR DATA: ', data);
+//     console.log('newTourItem: ', newTourItem);
     
-//     this.nearestToursWithLocation = data;
-//   })
+//     newTourItem.location = data[1].find(locationItem => tourItem.locationId === locationItem.id);
 
-  // const tours = this.getNearestTours().subscribe((data) =>
-  // {
-  //   console.log('tours DATA: ', data);
-  //   this.nearestTours = data;
-  //   console.log('nearestTours: ', data);
+//     return newTourItem;
+//   }))
+// )
 
-
-  // });
-
-  // const location =  this.getToursLocaton().subscribe((data) =>
-  // {
-  //   console.log('location DATA: ', data);
-  //   this.locationTours = data;
-  //   console.log('locationTours: ', data);
-
-  // });
-    
-
+//   }
   
-   
-    // const nearestTours = data[0];
-    // const toursLocation = data[1];
-  }
-  // .subscribe()
-  // console.log(nearestTours);
-  
-
-
-  //  return data
-
-
 
 
   getTicketTypeObservable(): Observable<ITourTypeSelect> {
@@ -102,6 +82,15 @@ getTicketsWithLocation(): Observable<INearestTourWithLocation[]> {
 
   getToursLocaton(): Observable<ITourLocation[]> {
     return this.ticketServiceRest.getLocationList();
+  }
+
+  getRandomNearestEvent(type: number): Observable<INearestTour>{
+    return this.ticketServiceRest.getRandomNearestEvent(type)
+  }
+
+  sendTourData(data: any): Observable<any> {
+    return this.ticketServiceRest.sendTourData(data);
+
   }
 
 }

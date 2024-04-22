@@ -27,8 +27,10 @@
                  </div>
          </ng-template>
        </p-tabPanel>
-       <p-tabPanel header="Список пользователей">
-         
+       <p-tabPanel header="Статистика">
+         <ng-template pTemplate="content">
+              <app-statistic></app-statistic>
+         </ng-template>
        </p-tabPanel>
 
 </p-tabView>

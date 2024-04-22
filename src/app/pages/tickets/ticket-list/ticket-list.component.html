@@ -10,11 +10,15 @@
     
     </div> -->
 
+    <!-- <ng-container >
+        <p>Найдено туров: {{ (tickets | searchTour: filter).length }}</p>
+    </ng-container> -->
+
     <div class="my-1 mx-3">
         <input 
         #ticketSearch
         type="text"
-        placeholder="Search tour ..." 
+        placeholder="Поиск тура ..." 
         [(ngModel)]="ticketSearchValue"
         pInputText/>
     
