@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { IUser, USER_LOCALSTORAGE_NAME } from 'src/app/models/users';
 
 @Injectable({
@@ -9,6 +10,9 @@ export class UserService {
   private user: IUser;
 
   private token: string;
+
+  private userBehSubject = new BehaviorSubject<IUser | null>(null);
+  readonly userBehSubject$ = this.userBehSubject.asObservable();
   
   constructor() { }
 
@@ -26,6 +30,8 @@ export class UserService {
   setUser(user: IUser) {
     if(user) {
       this.user = user;
+
+      this.userBehSubject.next(this.user)
     }
   }
 

@@ -3,17 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings/settings.component';
-import { StatisticComponent } from './statistic/statistic.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import {TableModule} from 'primeng/table'
+import { StatisticComponent } from './settings/statistic/statistic.component';
+import { ChangePasswordComponent } from './settings/change-password/change-password.component';
+import { UsersComponent } from './settings/users/users.component';
 
 
 @NgModule({
   declarations: [
     SettingsComponent,
-    StatisticComponent
+    StatisticComponent,
+    ChangePasswordComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,9 @@ import {TableModule} from 'primeng/table'
     FormsModule,
     InputTextModule,
     TabViewModule,
-    TableModule
-  ]
+    TableModule,
+    ReactiveFormsModule
+  ],
+  exports: [ChangePasswordComponent]
 })
 export class SettingsModule { }

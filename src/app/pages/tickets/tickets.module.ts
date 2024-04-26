@@ -4,7 +4,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {CalendarModule} from 'primeng/calendar';
 
@@ -24,8 +24,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { OrdersComponent } from '../orders/orders.component';
 import { OrdersModule } from '../orders/orders.module';
-import { StatisticComponent } from '../settings/statistic/statistic.component';
 import {TableModule} from 'primeng/table'
+import { ChangePasswordComponent } from '../settings/settings/change-password/change-password.component';
+import { StatisticComponent } from '../settings/settings/statistic/statistic.component';
+import { UsersComponent } from '../settings/settings/users/users.component';
 
 
 
@@ -40,7 +42,9 @@ import {TableModule} from 'primeng/table'
     SearchTourPipe,
     BlocksStyleDirective,
     SettingsComponent,
-    StatisticComponent
+    StatisticComponent,
+    ChangePasswordComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +60,8 @@ import {TableModule} from 'primeng/table'
     InputTextModule,
     TabViewModule,
     OrdersModule,
-    TableModule
+    TableModule,
+    ReactiveFormsModule
   ],
   providers: [
     MessageService,

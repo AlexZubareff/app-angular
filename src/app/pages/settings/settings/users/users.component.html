@@ -1,0 +1,19 @@
+<input type="text" pInputText [(ngModel)]="searchValue"/>
+
+<!-- <p-table [value]="(asyncUsers | async) | filterSearch: searchValue: 'fio'"> -->
+    <p-table [value]="users">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ФИО</th>
+            <th>Роль</th>
+            <th>Гражданство</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td>{{user.fio}}</td>
+            <td>{{user.rile}}</td>
+            <td>{{user.citizenship}}</td>
+        </tr>
+    </ng-template>
+</p-table>
