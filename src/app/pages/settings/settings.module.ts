@@ -10,6 +10,7 @@ import {TableModule} from 'primeng/table'
 import { StatisticComponent } from './settings/statistic/statistic.component';
 import { ChangePasswordComponent } from './settings/change-password/change-password.component';
 import { UsersComponent } from './settings/users/users.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { UsersComponent } from './settings/users/users.component';
     SettingsComponent,
     StatisticComponent,
     ChangePasswordComponent,
-    UsersComponent
+    UsersComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,9 @@ import { UsersComponent } from './settings/users/users.component';
     TableModule,
     ReactiveFormsModule
   ],
-  exports: [ChangePasswordComponent]
+  exports: [
+    ChangePasswordComponent,
+    UsersComponent
+  ]
 })
 export class SettingsModule { }

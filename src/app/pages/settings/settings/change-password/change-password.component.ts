@@ -43,8 +43,8 @@ export class ChangePasswordComponent implements OnInit {
 
     this.changePasswordForm = new FormGroup({
       password: new FormControl('', [Validators.required]),
-      newPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      newPasswordRepeat: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      newPassword: new FormControl('', [Validators.required, Validators.minLength(6), createPasswordStrengthValidator()]),
+      newPasswordRepeat: new FormControl('', [Validators.required, Validators.minLength(6), createPasswordStrengthValidator()]),
 
     });
 
@@ -172,33 +172,7 @@ const newPassRepeat = this.changePasswordForm.get('newPasswordRepeat')?.value;
     this.user = this.userService.getUser();
     console.log(this.user);
 
-    // if (!this.authService.isUserExists(newUser)) {
-    //   this.authService.setUser(newUser);
-
-    //   if (this.saveLocalStorageValue) {
-    //     window.localStorage.setItem(
-    //       USER_LOCALSTORAGE_NAME,
-    //       JSON.stringify(newUser)
-    //     );
-        
-    //     console.log(window.localStorage.getItem('current user'));
-    //   }
-
-    //   this.messageService.add({
-    //     severity: 'success',
-    //     summary: 'Service Message',
-    //     detail: 'Пользователь зарегестрирован!',
-    //   });
-
-      
-    //   console.log('saveLocalStorageValue: ', this.saveLocalStorageValue);
-    // } else {
-    //   this.messageService.add({
-    //     severity: 'warn',
-    //     summary: 'Service Message',
-    //     detail: 'Пользоваеть существует!',
-    //   });
-    // }
+    
 
   }
 

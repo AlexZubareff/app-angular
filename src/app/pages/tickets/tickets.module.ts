@@ -28,6 +28,7 @@ import {TableModule} from 'primeng/table'
 import { ChangePasswordComponent } from '../settings/settings/change-password/change-password.component';
 import { StatisticComponent } from '../settings/settings/statistic/statistic.component';
 import { UsersComponent } from '../settings/settings/users/users.component';
+import { FilterPipe } from '../settings/pipes/filter.pipe';
 
 
 
@@ -44,7 +45,8 @@ import { UsersComponent } from '../settings/settings/users/users.component';
     SettingsComponent,
     StatisticComponent,
     ChangePasswordComponent,
-    UsersComponent
+    UsersComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
