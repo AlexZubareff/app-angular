@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { ConfigService } from 'src/app/services/config/config.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -29,6 +30,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
   selectedValue: boolean;
 
   showCardNumber: boolean;
+
   
 
   constructor(
@@ -36,7 +38,8 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
     private messageService: MessageService,
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private http: HttpClient 
     ) { }
   
 
@@ -63,21 +66,40 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
       cardNumber: this.cardNumber
     }
 
-    if(this.authService.checkUser(authUser)){
-      this.userService.setUser(authUser);
-      this.userService.setToken('user-private-token');
-      window.localStorage.setItem(
-          'token',
-          'user-private-token'
-        );
-      this.router.navigate(['tickets/tickets-list']);
-      // this.messageService.add({severity:'success', summary:'Service Message', detail:'User exists'});
-      console.log('auth true');
+    this.http.post<IUser>('http://localhost:3000/users/' + authUser.login, authUser).subscribe((data: IUser) => {
       
-    } else {
-      this.messageService.add({severity:'warn', summary:'Service Message', detail:'There is no such User'});
-      console.log('auth false');
-    }
+   console.log('authData: ', data);
+   
+        this.userService.setUser(authUser);
+        const token: string = 'user-private-token'+ data.id;
+        this.userService.setToken(token);
+        window.localStorage.setItem(
+            'token',
+            'user-private-token'
+          );
+        this.router.navigate(['tickets/tickets-list']);
+        console.log('auth true');
+        
+      }, () => {
+        this.messageService.add({severity:'warn', summary:'Service Message', detail:'There is no such User'});
+        console.log('auth false');
+      }
+    )
+
+    // if(this.authService.checkUser(authUser)){
+    //   this.userService.setUser(authUser);
+    //   this.userService.setToken('user-private-token');
+    //   window.localStorage.setItem(
+    //       'token',
+    //       'user-private-token'
+    //     );
+    //   this.router.navigate(['tickets/tickets-list']);
+    //   console.log('auth true');
+      
+    // } else {
+    //   this.messageService.add({severity:'warn', summary:'Service Message', detail:'There is no such User'});
+    //   console.log('auth false');
+    // }
     
   }
 
