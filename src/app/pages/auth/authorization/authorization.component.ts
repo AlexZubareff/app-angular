@@ -5,7 +5,8 @@ import { MessageService } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { ConfigService } from 'src/app/services/config/config.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ServerError } from 'src/app/models/errors';
 
 
 
@@ -66,23 +67,24 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
       cardNumber: this.cardNumber
     }
 
-    this.http.post<IUser>('http://localhost:3000/users/' + authUser.login, authUser).subscribe((data: IUser) => {
+    this.http.post<{access_token: string}>('http://localhost:3000/users/' + authUser.login, authUser).subscribe((data: {access_token: string}) => {
       
    console.log('authData: ', data);
    
         this.userService.setUser(authUser);
-        const token: string = 'user-private-token'+ data.id;
+        const token: string = data.access_token;
         this.userService.setToken(token);
         window.localStorage.setItem(
             'token',
             'user-private-token'
           );
         this.router.navigate(['tickets/tickets-list']);
-        console.log('auth true');
+        // console.log('auth true');
         
-      }, () => {
-        this.messageService.add({severity:'warn', summary:'Service Message', detail:'There is no such User'});
-        console.log('auth false');
+      }, (err: HttpErrorResponse) => {
+        const serverError = <ServerError>err.error;
+        this.messageService.add({severity:'warn', summary:'Service Message', detail:serverError.errorText});
+        // console.log('auth false');
       }
     )
 

@@ -16,6 +16,7 @@ export class RestInterceptorsService implements HttpInterceptor{
     
     const hasToken = this.userService.getToken();
 
+    
     if(hasToken) {
       const cloned = req.clone({
         headers: req.headers.set('Authorization',
@@ -25,5 +26,7 @@ export class RestInterceptorsService implements HttpInterceptor{
     } else {
       return next.handle(req);
     }
+
+ 
   }
 }

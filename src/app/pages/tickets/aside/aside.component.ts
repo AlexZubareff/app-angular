@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { IMenuType } from 'src/app/models/menuType';
@@ -28,7 +29,8 @@ export class AsideComponent implements OnInit {
   constructor(
     private ticketService: TicketService,
     private messageService: MessageService,
-    private settingsService: SettigsService
+    private settingsService: SettigsService,
+    private http: HttpClient  
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +76,15 @@ export class AsideComponent implements OnInit {
   initSettinsData(): void {
     this.settingsService.loadUserSettingsSubject({saveToken: false});
   }
+
+  initTours(): void {
+    this.http.get('http://localhost:3000/tours/').subscribe((data)=>{})
+  }
+
+  deleteTours(): void {
+    this.http.get('http://localhost:3000/tours/remove').subscribe((data)=>{})
+  }
+
 }
 
 
