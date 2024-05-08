@@ -47,11 +47,12 @@
                     <ng-template pTemplate="content">
                         <p>{{item.description}}</p>
                         <p>{{item.date}}</p>
+                        
                         <span [ngStyle]="{fontWeight: 'bold'}">{{item.price}}</span>
                     </ng-template>
                     
                     <ng-template pTemplate="footer"> 
-                        <p-button (click)="goToTicketInfoPage(item)" label="more details"></p-button>
+                        <p-button (click)="goToTicketInfoPage(item)" label="Подробнее"></p-button>
                     </ng-template>
                 </p-card>
             </div>

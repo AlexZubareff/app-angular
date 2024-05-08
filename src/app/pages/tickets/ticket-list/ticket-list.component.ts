@@ -74,12 +74,19 @@ export class TicketListComponent implements OnInit {
     });
 
     this.loading = true;
- 
-    this.ticketService.getTickets().subscribe(
-      (data: ITour[]) => {
+
+    this.ticketService.ticketUpdateSubject$.subscribe((data) => {
+      this.tickets = data;
+      this.ticketsCopy = [...this.tickets];
+      this.ticketStorage.setStorage(data);
+
+    })
+
+    this.ticketService.getTickets().subscribe((data: ITour[]) => {
         this.tickets = data;
         this.ticketsCopy = [...this.tickets];
         this.ticketStorage.setStorage(data);
+
         // this.ticketStorage.setStorage(this.tickets);
       }
     )
@@ -111,7 +118,7 @@ export class TicketListComponent implements OnInit {
    }
 
   goToTicketInfoPage(item: ITour) {
-    this.router.navigate([`/tickets/ticket/${item.id}`])
+    this.router.navigate([`/tickets/ticket/${item._id}`])
   }
 
   onEnter(ev: {index: number}): void {

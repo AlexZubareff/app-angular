@@ -16,8 +16,14 @@ export class TicketRestService {
       
         // return this.http.get<ITour[]>(' https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/tours/',
         // {headers: {'Authorization': 'user-private-token-refresh'}}
-        return this.http.get<ITour[]>(' https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/tours/')
+        // return this.http.get<ITour[]>(' https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/tours/')
+        return this.http.get<ITour[]>('http://localhost:3000/tours/');
+
     }
+
+    // getOneTickets(): Observable<ITour> {
+    //   return this.http.get<ITour>('http://localhost:3000/tours/');
+    // }
 
     getRestError(): Observable<any> {
       return this.http.get<ITour[]>('https://62b9e756ff109cd1dc9dae16.mockapi.io/apiv/v1/tours/notFound');

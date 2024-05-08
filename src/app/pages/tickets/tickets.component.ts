@@ -26,7 +26,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
     this.showAside = !this.recursFindPropertyInData(this.route.snapshot, 'asideHidden');
 
     this.router.events.pipe(
-      tap((data) => {console.log('data', data)}),
+      // tap((data) => {console.log('data', data)}),
       filter((ev) => ev instanceof ActivationStart),
       takeUntil(this.destroyer)
     ).subscribe((data) => {
@@ -47,7 +47,7 @@ export class TicketsComponent implements OnInit, OnDestroy {
   }
 
   recursFindPropertyInData(currentSnapshot: ActivatedRouteSnapshot, searchProp: string): boolean {
-    console.log('currentSnapshot: ', currentSnapshot);
+    // console.log('currentSnapshot: ', currentSnapshot);
     
     if(currentSnapshot?.data[searchProp]) {
       return true;

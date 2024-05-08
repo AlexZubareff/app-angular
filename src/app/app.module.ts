@@ -11,7 +11,7 @@ import { ConfigService } from './services/config/config.service';
 
 const initializeApp = (config: ConfigService)  => {
   return () => config.loadPromise().then(() => {
-    console.log('---CONFIG LOADED--', ConfigService.config)
+    // console.log('---CONFIG LOADED--', ConfigService.config)
   });
 }
 

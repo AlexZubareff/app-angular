@@ -16,6 +16,9 @@ export class TicketService {
   private ticketSubject = new Subject<ITourTypeSelect>();
   readonly ticketType$ = this.ticketSubject.asObservable();
 
+  private ticketUpdateSubject = new Subject<ITour[]>();
+  readonly ticketUpdateSubject$ = this.ticketUpdateSubject.asObservable();
+
   constructor(
     private ticketServiceRest: TicketRestService,
     
@@ -30,6 +33,9 @@ export class TicketService {
     ));
 }
 
+// getOneTicket():Observable<ITour[]> {
+//   return this.ticketServiceRest.getOneTickets()
+// }
 
 transformData(tours: INearestTour[], location: ITourLocation[]){
   const nearestToursWithLocation: INearestTourWithLocation[] = [];
@@ -91,6 +97,10 @@ transformData(tours: INearestTour[], location: ITourLocation[]){
   sendTourData(data: any): Observable<any> {
     return this.ticketServiceRest.sendTourData(data);
 
+  }
+
+  updateTicketList(data: ITour[]) {
+    this.ticketUpdateSubject.next(data);
   }
 
 }

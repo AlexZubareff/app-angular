@@ -51,7 +51,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
   }
 
   ngOnDestroy(): void {
-    console.log('destroy');
+    // console.log('destroy');
   }
 
   vipStatusSelected() {
@@ -105,13 +105,13 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
     
   }
 
-  onEnter(ev: KeyboardEvent): void {
-    console.log(ev.key);
+  // onEnter(ev: KeyboardEvent): void {
+  //   // console.log(ev.key);
     
-    if(ev.key === 'Enter') {
-      this.onAuth(ev);
-    }
+  //   if(ev.key === 'Enter') {
+  //     this.onAuth(ev);
+  //   }
     
 
-  }
+  // }
 }

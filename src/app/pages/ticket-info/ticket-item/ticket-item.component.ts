@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +8,8 @@ import { IUser } from 'src/app/models/users';
 import { TicketService } from 'src/app/services/tickets/ticket.service';
 import { TicketsStorageService } from 'src/app/services/ticketsStorage/ticketsStorage.service';
 import { UserService } from 'src/app/services/user/user.service';
+
+
 
 @Component({
   selector: 'app-ticket-item',
@@ -34,7 +37,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     private route: ActivatedRoute,
     private ticketStorage: TicketsStorageService,
     private userService: UserService,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private http: HttpClient 
   ) { }
 
   ngOnInit(): void {
@@ -54,17 +58,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
     });
 
-   // get nearest tours with location
-    // forkJoin([this.ticketService.getNearestTours(), this.ticketService.getToursLocaton()]).subscribe((data) =>
-    //   {
-    //     console.log('forkJoin DATA: ', data);
-       
-    //     this.toursLocation = data[1];
-    //     this.nearestToursWithLocation = this.ticketService.transformData(data[0], data[1]);
-    //   console.log(this.nearestToursWithLocation);
 
-    //   }
-    // )
 
     this.getTours();
 
@@ -75,8 +69,14 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     const paramValueId = routeIdParam || queryIdParam;
 
     if (paramValueId) {
-      const ticketStorage = this.ticketStorage.getStorage();
-      this.ticket = ticketStorage.find(el => el.id === paramValueId);
+      // const ticketStorage = this.ticketStorage.getStorage();
+      console.log('paramValueId: ', paramValueId);
+
+      // this.ticket = ticketStorage.find(el => el.id === paramValueId);
+      this.http.get<ITour>('http://localhost:3000/tours/'+ paramValueId).subscribe((data)=>{
+        console.log('authData: ', data);
+        this.ticket = data;
+      });
       // console.log('this.ticket: ', this.ticket);
       
     }
@@ -117,7 +117,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           // console.log('forkJoin DATA: ', data);
           
-          // this.nearestTours = data[0];
+         
           this.toursLocation = data[1];
           this.nearestToursWithLocation = this.ticketService.transformData(data[0], data[1]);
       // console.log(this.nearestToursWithLocation);

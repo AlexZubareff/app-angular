@@ -26,10 +26,10 @@ export class ObservableExampleService {
       },2000)
     }))
     observable.subscribe((data) => {
-      console.log('observable data: ', data);
+      // console.log('observable data: ', data);
       
     }, (error => {
-      console.log('error: ', error);
+      // console.log('error: ', error);
       
     }))
   }
