@@ -77,8 +77,8 @@ export class TicketListComponent implements OnInit {
 
     this.ticketService.ticketUpdateSubject$.subscribe((data) => {
       this.tickets = data;
-      this.ticketsCopy = [...this.tickets];
-      this.ticketStorage.setStorage(data);
+      // this.ticketsCopy = [...this.tickets];
+      // this.ticketStorage.setStorage(data);
 
     })
 

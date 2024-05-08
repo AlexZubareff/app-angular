@@ -67,10 +67,10 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
       cardNumber: this.cardNumber
     }
 
-    this.http.post<{access_token: string}>('http://localhost:3000/users/' + authUser.login, authUser).subscribe((data: {access_token: string}) => {
+    this.http.post<{access_token: string, id: string}>('http://localhost:3000/users/' + authUser.login, authUser).subscribe((data: {access_token: string, id: string}) => {
       
    console.log('authData: ', data);
-   
+        authUser.id = data.id;
         this.userService.setUser(authUser);
         const token: string = data.access_token;
         this.userService.setToken(token);
@@ -88,20 +88,7 @@ export class AuthorizationComponent implements OnInit, OnDestroy  {
       }
     )
 
-    // if(this.authService.checkUser(authUser)){
-    //   this.userService.setUser(authUser);
-    //   this.userService.setToken('user-private-token');
-    //   window.localStorage.setItem(
-    //       'token',
-    //       'user-private-token'
-    //     );
-    //   this.router.navigate(['tickets/tickets-list']);
-    //   console.log('auth true');
-      
-    // } else {
-    //   this.messageService.add({severity:'warn', summary:'Service Message', detail:'There is no such User'});
-    //   console.log('auth false');
-    // }
+    
     
   }
 

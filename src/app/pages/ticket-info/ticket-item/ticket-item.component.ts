@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } fr
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, forkJoin, fromEvent } from 'rxjs';
+import { IOrder } from 'src/app/models/order';
 import { INearestTour, INearestTourWithLocation, ITour, ITourLocation } from 'src/app/models/tours';
 import { IUser } from 'src/app/models/users';
 import { TicketService } from 'src/app/services/tickets/ticket.service';
@@ -74,7 +75,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
       // this.ticket = ticketStorage.find(el => el.id === paramValueId);
       this.http.get<ITour>('http://localhost:3000/tours/'+ paramValueId).subscribe((data)=>{
-        console.log('authData: ', data);
+        console.log('tiketData: ', data);
         this.ticket = data;
       });
       // console.log('this.ticket: ', this.ticket);
@@ -145,8 +146,17 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   initTour(): void {
     const userData = this.userForm.getRawValue();
     const postData = {...this.ticket, ...userData};
+console.log('postData: ', postData)
+    const userId = this.userService.getUser()?.id || null;
+    const orderObj: IOrder = {
+      age: postData.age,
+      birthDay: postData.birthDay,
+      cardNumber: postData.cardNumber,
+      tourId: postData._id,
+      userId: userId
+    } 
 
-    this.ticketService.sendTourData(postData).subscribe();
+    this.ticketService.sendTourData(orderObj).subscribe();
 
     console.log('postData: ', postData);
     console.log('this.userForm.getRawValue(): ', this.userForm.getRawValue());
