@@ -87,12 +87,17 @@ initMenuItems(): MenuItem[] {
       routerLink:['tickets-list']
     },
     {
-      label: 'Заказы',
+      label: 'Туры',
       routerLink: ['orders']
     },
     {
       label: 'Настройки',
       routerLink:['settings'],
+      // visible: this.settingsActive
+    },
+    {
+      label: 'Заказы',
+      routerLink:['booking'],
       // visible: this.settingsActive
     },
     {

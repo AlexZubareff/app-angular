@@ -147,10 +147,11 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     const userData = this.userForm.getRawValue();
     const postData = {...this.ticket, ...userData};
 console.log('postData: ', postData)
+
     const userId = this.userService.getUser()?.id || null;
     const orderObj: IOrder = {
       age: postData.age,
-      birthDay: postData.birthDay,
+      birthDay: postData.birthDay.toDateString().slice(4),
       cardNumber: postData.cardNumber,
       tourId: postData._id,
       userId: userId

@@ -28,6 +28,10 @@ const routes: Routes = [
         component: SettingsComponent,
         data: {asideHidden: true}
       },
+      {
+        path: 'booking',
+        loadChildren: () => import('../booking/booking.module').then(m => m.BookingModule)
+      },
     
     ]
   },
