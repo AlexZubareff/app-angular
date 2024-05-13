@@ -13,7 +13,7 @@ import { Subscription, debounceTime, fromEvent } from 'rxjs';
   styleUrls: ['./ticket-list.component.scss']
 })
 export class TicketListComponent implements OnInit {
-  tickets: ITour[];
+  tickets: ITour[] | [];
   filter: string = '';
   loading: boolean = false;
   // private  tourUnsubscriber: Subscription;

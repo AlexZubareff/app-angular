@@ -23,8 +23,8 @@
         pInputText/>
     
     </div>
-    <div class="m-5">
-        <p>Найдено туров: {{ (tickets | searchTour: filter).length }}</p>
+    <div class="m-5" *ngIf="tickets?.length > 0">
+        <p>Найдено туров: {{ (tickets | searchTour:filter).length }}</p>
         <!-- <p>Количество элементов: {{tickets.length}}</p> -->
         <!-- <p>Current Tour index: {{ blockDirective.activeElementIndex }}</p> -->
     </div>
@@ -59,7 +59,7 @@
         </div>
         
 </div>
-<div  *ngIf="(tickets | searchTour: filter).length === 0" class="text-center">
+<div  *ngIf="tickets?.length === 0" class="text-center">
     <p> No tours found</p>
 </div>
 

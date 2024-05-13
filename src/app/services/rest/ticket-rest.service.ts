@@ -57,4 +57,9 @@ export class TicketRestService {
 
     }
 
+    createTour(data: any): Observable<any> {
+      return this.http.post('http://localhost:3000/tour-item/', data, {headers:{}})
+
+    }
+
 }

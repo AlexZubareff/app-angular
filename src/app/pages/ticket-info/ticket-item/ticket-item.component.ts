@@ -116,7 +116,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
        // get nearest tours with location
        forkJoin([this.ticketService.getNearestTours(), this.ticketService.getToursLocaton()]).subscribe((data) =>
         {
-          // console.log('forkJoin DATA: ', data);
+          console.log('forkJoin DATA: ', data);
           
          
           this.toursLocation = data[1];

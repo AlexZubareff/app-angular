@@ -11,6 +11,7 @@ import { StatisticComponent } from './settings/statistic/statistic.component';
 import { ChangePasswordComponent } from './settings/change-password/change-password.component';
 import { UsersComponent } from './settings/users/users.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { TourLoaderComponent } from './tour-loader/tour-loader.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     StatisticComponent,
     ChangePasswordComponent,
     UsersComponent,
-    FilterPipe
+    FilterPipe,
+    TourLoaderComponent
   ],
   imports: [
     CommonModule,

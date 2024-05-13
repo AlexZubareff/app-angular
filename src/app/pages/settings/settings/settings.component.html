@@ -1,9 +1,8 @@
 <p-tabView>
        <p-tabPanel [cache]="isTabCaching" header="Смена пароля">
-         <ng-template pTemplate="context">
-
-              <app-change-password></app-change-password>
-              <!-- <div class="d-flex flex-column col-2 registration-input-wrap" (keydown)="onEnter($event)">
+              <ng-template pTemplate="context">
+                     <app-change-password></app-change-password>
+                     <!-- <div class="d-flex flex-column col-2 registration-input-wrap" (keydown)="onEnter($event)">
                      <div class="my-1 d-flex flex-column">
                             <span class="mx-3">Старый пароль</span>
                             <input type="password" pInputText [(ngModel)]="password" />
@@ -25,18 +24,23 @@
                             <button (click)="changePass($event)" type="button" class="btn btn-primary">Сменить пароль</button>
                      </div>
                  </div> -->
-         </ng-template>
+              </ng-template>
        </p-tabPanel>
        <p-tabPanel header="Статистика">
-         <ng-template pTemplate="content">
-              <app-statistic></app-statistic>
-         </ng-template>
+              <ng-template pTemplate="content">
+                     <app-statistic></app-statistic>
+              </ng-template>
        </p-tabPanel>
        <p-tabPanel header="Пользователи">
               <ng-template pTemplate="content">
-                   <app-users></app-users>
+                     <app-users></app-users>
               </ng-template>
-            </p-tabPanel>
+       </p-tabPanel>
+       <p-tabPanel header="Загрузка тура">
+              <ng-template pTemplate="content">
+                     <app-tour-loader></app-tour-loader>
+              </ng-template>
+       </p-tabPanel>
 
 </p-tabView>
    

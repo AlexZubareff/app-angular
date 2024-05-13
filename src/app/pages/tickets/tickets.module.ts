@@ -29,6 +29,7 @@ import { ChangePasswordComponent } from '../settings/settings/change-password/ch
 import { StatisticComponent } from '../settings/settings/statistic/statistic.component';
 import { UsersComponent } from '../settings/settings/users/users.component';
 import { FilterPipe } from '../settings/pipes/filter.pipe';
+import { TourLoaderComponent } from '../settings/tour-loader/tour-loader.component';
 
 
 
@@ -46,6 +47,7 @@ import { FilterPipe } from '../settings/pipes/filter.pipe';
     StatisticComponent,
     ChangePasswordComponent,
     UsersComponent,
+    TourLoaderComponent,
     FilterPipe
   ],
   imports: [

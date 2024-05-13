@@ -103,4 +103,8 @@ transformData(tours: INearestTour[], location: ITourLocation[]){
     this.ticketUpdateSubject.next(data);
   }
 
+  createTour(data: any){
+    return this.ticketServiceRest.createTour(data);
+  }
+
 }

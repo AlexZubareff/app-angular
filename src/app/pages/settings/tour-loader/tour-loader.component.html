@@ -1,0 +1,46 @@
+<div class="mt-4">
+    <h4>Создание тура</h4>
+    <div class="mt-3 user-info" [formGroup]="tourForm" >
+        <div class="mt-3">
+            <!-- <span class="mx-3">Гражданство</span> -->
+            <ng-container *ngTemplateOutlet="tourFieldType; context:{titleValue: 'Название тура'}"></ng-container>
+
+            <input type="text" class="mt-3" pInputText formControlName="name" />
+        </div>
+       <div class="mt-3">
+
+            <!-- <span class="mx-3">Имя</span> -->
+            <ng-container *ngTemplateOutlet="tourFieldType; context:{titleValue: 'Описание тура'}"></ng-container>
+            <input type="text" class="mt-3" pInputText formControlName="description" />
+        </div>
+        <div class="mt-3">
+            <!-- <span class="mx-3">Фамилия</span> -->
+            <ng-container *ngTemplateOutlet="tourFieldType; context:{titleValue: 'Туроператор'}"></ng-container>
+
+            <input type="text" class="mt-3" pInputText formControlName="operator" />
+        </div>
+        <div class="mt-3">
+            <!-- <span class="mx-3">Номер карты</span> -->
+            <ng-container *ngTemplateOutlet="tourFieldType; context:{titleValue: 'Стоимость'}"></ng-container>
+
+            <input type="text" class="mt-3" pInputText formControlName="price" />
+        </div>
+        <div class="mt-3">
+            <!-- <span class="mx-3">Номер карты</span> -->
+            <ng-container *ngTemplateOutlet="tourFieldType; context:{titleValue: 'Изображение'}"></ng-container>
+
+            <input type="file" class="mt-3" (change)="selectFile($event)" pInputText formControlName="img" />
+        </div>
+
+        <div class="mt-4">
+            <button class="btn-success btn" type="submit" 
+                    (click)="createTour()"
+                    [disabled]="!tourForm.valid">Создать тур</button>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #tourFieldType let-value = "titleValue">
+    <span class="mx-3">{{ value }}</span>
+</ng-template>
