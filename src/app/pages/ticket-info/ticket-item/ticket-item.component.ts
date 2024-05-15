@@ -23,7 +23,8 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   userForm: FormGroup;
   location: ITourLocation[];
 
-  nearestTours: INearestTour[];
+  // nearestTours: INearestTour[];
+  nearestTours: ITour[];
   toursLocation: ITourLocation[];
 
   nearestToursWithLocation: INearestTourWithLocation[];
@@ -61,7 +62,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 
-    this.getTours();
+    // this.getTours();
 
 
     // params
@@ -77,11 +78,14 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
       this.http.get<ITour>('http://localhost:3000/tours/'+ paramValueId).subscribe((data)=>{
         console.log('tiketData: ', data);
         this.ticket = data;
+        // console.log('this.ticket.name: ', this.ticket.name);
+        
+        this.getTours(this.ticket.name);
       });
       // console.log('this.ticket: ', this.ticket);
       
     }
-
+    
 
   }
 
@@ -91,7 +95,10 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
     const fromEventObserver = fromEvent(this.ticketSearch.nativeElement, 'keyup', {passive: true});
     this.searchTicketSub = fromEventObserver.subscribe((ev:any) => {
       if(this.ticketSearch.nativeElement.value === '') {
-        this.getTours();
+        // this.getTours();
+
+
+        
         console.log('Сторка пустая');
         
       }
@@ -112,20 +119,15 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onSubmit() {}
 
-  getTours(){
-       // get nearest tours with location
-       forkJoin([this.ticketService.getNearestTours(), this.ticketService.getToursLocaton()]).subscribe((data) =>
-        {
-          console.log('forkJoin DATA: ', data);
-          
-         
-          this.toursLocation = data[1];
-          this.nearestToursWithLocation = this.ticketService.transformData(data[0], data[1]);
-      // console.log(this.nearestToursWithLocation);
-  
-        }
-      )
+  getTours(ticketName: string){
+        this.http.get<ITour[]>('http://localhost:3000/tour-item/' + ticketName).subscribe((data)=>{
+          this.nearestTours = data;
+          console.log('NearestTicketData: ', data);
+        });
   }
+
+
+
 
   selectDate(ev: Event) {}
 

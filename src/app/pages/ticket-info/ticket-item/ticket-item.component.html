@@ -1,6 +1,6 @@
 <div class="ticket-info-wrap">
     <div class="m-5">
-        <a [routerLink]="['/tickets/tickets-list']" routerLinkActive="router-link-active">Back</a>
+        <a [routerLink]="['/tickets/tickets-list']" routerLinkActive="router-link-active" class="p-button font-bold back">Назад</a>
         <div class="mt-4">
             <h4>Информация о туре</h4>
             <div class="tiket-info">
@@ -64,7 +64,7 @@
             <div class="my-1 mx-3">
                 <input #ticketSearch type="text" placeholder="Поиск тура ..." pInputText />
             </div>
-            <p-carousel [value]="nearestToursWithLocation">
+            <p-carousel [value]="nearestTours">
                 <ng-template pTemplate="header">
 
                 </ng-template>
@@ -73,10 +73,10 @@
                         Название тура: {{tour.name}}
                     </div>
                     <div>
-                        Страна тура: {{ tour.location.name }}
+                        Страна тура: 
                     </div>
                     <div class="ticket-img-nearest">
-                        <img class="w-100 h-100" src="../../../../assets/img/{{tour.img}}" alt="" />
+                        <img class="w-100 h-100" src="http://localhost:3000/public/{{tour.img}}" alt="" />
                     </div>
                 </ng-template>
             </p-carousel>

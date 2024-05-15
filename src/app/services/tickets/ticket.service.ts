@@ -82,9 +82,9 @@ transformData(tours: INearestTour[], location: ITourLocation[]){
     return this.ticketServiceRest.getRestError();
   }
 
-  getNearestTours(): Observable<INearestTour[]> {
-    return this.ticketServiceRest.getNearestTickets();
-  }
+  // getNearestTours(ticket: ITour): Observable<ITour[]> {
+  //   return this.ticketServiceRest.getNearestTickets(ticket);
+  // }
 
   getToursLocaton(): Observable<ITourLocation[]> {
     return this.ticketServiceRest.getLocationList();
